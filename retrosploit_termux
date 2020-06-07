@@ -136,7 +136,7 @@ clear && logo && main_module
 elif [ $menu == "tor" ]; then
 sleep 0.3
 
-if [ -d /sys/class/net/eth0 ]; then
+if [ -d /sys/class/net/wlan0 ]; then
 
 sleep 0.3
 tor_module
