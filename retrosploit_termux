@@ -38,8 +38,7 @@ public=`curl ifconfig.me 2>&-`
 
 version="1.0"
 auth="Retr0"
-mac=`</sys/class/net/eth0/address`
-logo=`figlet Retrosploit -f chunky.flf | lolcat`
+logo=`figlet Retrosploit | lolcat`
 
 #=========== END MODULES ============#
 
@@ -74,12 +73,6 @@ echo -e $red":: ${cyan}Description ${red}::\n"
 echo -e $yellow"This tools have many function to use. But you need to remember something.
 Do not make the crime with this tools. I will not be responsible in all cases 
 if you do something illegal.$reset"
-
-echo -e " __________________________________________________________________"
-echo -e "|______IP Address______||______Mac Address______||_____Gateway_____|"
-echo -e "|                      ||                       ||                 |"
-echo -e "|    $llp     ||   $mac   ||      $gate       |"
-echo -e "|______________________||_______________________||_________________|\n$cyan"
 
 }
 
