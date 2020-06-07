@@ -38,7 +38,7 @@ public=`curl ifconfig.me 2>&-`
 
 version="1.0"
 auth="Retr0"
-mac=`</sys/class/net/eth0/address`
+mac=`</sys/class/net/wlan0/address`
 logo=`figlet Retrosploit -f chunky.flf`
 
 #=========== END MODULES ============#
@@ -194,7 +194,7 @@ apt-get install wpscan -y && sleep 0.8
 
 fi
 
-if [ -d ~/Retrosploit/functions/RED_HAWK ] && [ -f ~/Retrosploit/functions/RED_HAWK/rhawk.php ]; then
+if [ -d ~/Retrosploit_Termux/functions/RED_HAWK ] && [ -f ~/Retrosploit_Termux/functions/RED_HAWK/rhawk.php ]; then
 
 echo -e $reset"Red Hawk	${yellow}[ ${reset}FOUND ${yellow}]"
 sleep 0.8
