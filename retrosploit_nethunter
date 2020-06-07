@@ -204,11 +204,11 @@ else
 echo -e $reset"Red Hawk	${yellow}[ ${red}NOT FOUND ${yellow}]"
 sleep 0.8
 
-cd ~/Retrosploit/functions && git clone https://github.com/Tuhinshubhra/RED_HAWK.git && sleep 0.8
+cd ~/Retrosploit_Termux/functions && git clone https://github.com/Tuhinshubhra/RED_HAWK.git && sleep 0.8
 
 fi
 
-if [ -d ~/Retrosploit/functions/sAINT ] && [ -f ~/Retrosploit/functions/sAINT/sAINT.jar ]; then
+if [ -d ~/Retrosploit_Termux/functions/sAINT ] && [ -f ~/Retrosploit_Termux/functions/sAINT/sAINT.jar ]; then
 
 echo -e $reset"sAINT		${yellow}[ ${reset}FOUND ${yellow}]"
 sleep 0.8
@@ -218,11 +218,11 @@ else
 echo -e $reset"sAINT		${yellow}[ ${red}NOT FOUND ${yellow}]"
 sleep 0.8
 
-cd ~/Retrosploit/functions && git clone https://github.com/tiagorlampert/sAINT.git && apt-get install maven default-jdk default-jre openjdk-8-jdk openjdk-8-jre zlib1g-dev libncurses5-dev -y && cd sAINT && chmod +x configure.sh && ./configure.sh && sleep 0.8
+cd ~/Retrosploit_Termux/functions && git clone https://github.com/tiagorlampert/sAINT.git && apt-get install maven default-jdk default-jre openjdk-8-jdk openjdk-8-jre zlib1g-dev libncurses5-dev -y && cd sAINT && chmod +x configure.sh && ./configure.sh && sleep 0.8
 
 fi
 
-if [ -d ~/Retrosploit/functions/HiddenEye ] && [ -f ~/Retrosploit/functions/HiddenEye/HiddenEye.py ]; then
+if [ -d ~/Retrosploit_Termux/functions/HiddenEye ] && [ -f ~/Retrosploit_Termux/functions/HiddenEye/HiddenEye.py ]; then
 
 echo -e $reset"HiddenEye	${yellow}[ ${reset}FOUND ${yellow}]"
 sleep 0.8
@@ -232,11 +232,11 @@ else
 echo -e $reset"HiddenEye	${yellow}[ ${red}NOT FOUND ${yellow}]"
 sleep 0.8
 
-cd ~/Retrosploit/functions && git clone https://github.com/DarkSecDevelopers/HiddenEye.git && cd HiddenEye && pip3 install -r requirements.txt && sleep 0.8
+cd ~/Retrosploit_Termux/functions && git clone https://github.com/DarkSecDevelopers/HiddenEye.git && cd HiddenEye && pip3 install -r requirements.txt && sleep 0.8
 
 fi
 
-if [ -d /sys/class/net/eth0 ]; then
+if [ -d /sys/class/net/wlan0 ]; then
 
 echo -e $reset"You use PC	${yellow}[ ${reset}PC FOUND ${yellow}]"
 sleep 0.8
@@ -246,7 +246,7 @@ else
 echo -e $reset"You use Termux	${yellow}[ ${red}Termux FOUND ${yellow}]"
 sleep 0.8
 
-cd ~/Retrosploit/functions && git clone https://github.com/tiagorlampert/sAINT.git && cd sAINT && chmod +x configure.sh && ./configure.sh && sleep 0.8
+cd ~/Retrosploit_Termux/functions && git clone https://github.com/tiagorlampert/sAINT.git && cd sAINT && chmod +x configure.sh && ./configure.sh && sleep 0.8
 
 fi
 
