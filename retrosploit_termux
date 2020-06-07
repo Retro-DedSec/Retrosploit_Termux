@@ -57,7 +57,7 @@ if [ -v "$(command -v msfconsole)" ] && [ -v "$(command -v zip)" ] && [ -v "$(co
 echo -e $cyan":: [ ${blink}Checking Modules...${blinkre} ] ::\n" && sleep 1.8 && echo -e $cyan "Modules installed completed!!" && logo
 
 else
-echo -e $cyan":: [ ${blink}Checking Modules...${blinkre} ] ::\n" && sleep 0.8 && apt-get update && apt-get full-upgrade -y && pkg install coreutils dnsutils hydra metasploit zip crunch sqlmap nmap figlet ruby python -y && gem install lolcat && apt-get update && apt-get full-upgrade -y 
+echo -e $cyan":: [ ${blink}Checking Modules...${blinkre} ] ::\n" && sleep 0.8 && apt-get update && apt-get full-upgrade -y && pkg install coreutils dnsutils hydra metasploit zip crunch sqlmap nmap figlet ruby python -y && gem install lolcat && apt-get update && apt-get full-upgrade -y && logo 
 
 fi
 
