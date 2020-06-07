@@ -48,10 +48,10 @@ echo -e $cyan && clear && sleep 0.5
 
 echo -e $cyan":: [ ${blink}Checking...${blinkre} ] ::\n"
 
-if [ -d ~/Retrosploit/functions ] && [ -d ~/Retrosploit/output ]; then
+if [ -d ~/Retrosploit_Termux/functions ] && [ -d ~/Retrosploit_Termux/output ]; then
 sleep 0.8
 else
-mkdir ~/Retrosploit/functions && mkdir ~/Retrosploit/output
+mkdir ~/Retrosploit_Termux/functions && mkdir ~/Retrosploit_Termux/output
 fi
 
 if [ -x "$(command -v figlet)" ]; then
