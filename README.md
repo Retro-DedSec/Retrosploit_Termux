@@ -6,8 +6,20 @@ Retrosploit termux version
 
 git clone https://github.com/Retro-DedSec/Retrosploit_Termux.git
 
-cd Retrosploit
+cd Retrosploit_Termux
 
 chmod +x retrosploit_termux
 
 ./retrosploit_termux
+
+:: For Kali nethunter ::
+
+Required : Kali nethunter [Root or Non-Root]
+
+git clone https://github.com/Retro-DedSec/Retrosploit_Termux.git
+
+cd Retrosploit_Termux
+
+chmod +x retrosploit_nethunter
+
+./retrosploit_nethunter
