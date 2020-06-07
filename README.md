@@ -14,7 +14,8 @@ chmod +x retrosploit_termux
 
 :: For Kali nethunter ::
 
-Required : Kali nethunter [Root or Non-Root]
+Required : Termux
+Kali nethunter [Root or Non-Root]
 
 git clone https://github.com/Retro-DedSec/Retrosploit_Termux.git
 
